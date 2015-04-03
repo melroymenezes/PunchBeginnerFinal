@@ -38,7 +38,7 @@
                             <input type="text" name="username" value="" id="username" />
                             <label for="password">Password:</label>
                             <input type="password" name="password" value="" id="password" />
-                    <input type="submit" name="submit" value="Submit" />
+                    <input type="submit" name="submit" value="Log In" />
                 </fieldset>
             </form>
         </div>

@@ -50,7 +50,7 @@
                 <fieldset>
                     <legend>Create a new project</legend>
                             <label for="title">Title:</label> 
-                            <input type="text" name="title" value="" id="title" />
+                            <input type="text" name="title" value="" id="title" required/>
                             <label for="details">Details:</label> 
                             <input type="text" name="details" value="" id="details" />
                             <!--<textarea name="details" rows="4" cols="41">Enter the details here</textarea> -->
@@ -58,7 +58,7 @@
                             <input type="text" name="deadline" value="" id="deadline"
                                    placeholder="MM/DD/YYYY" pattern="(0[1-9]|1[012])[/](0[1-9]|[1-2][0-9]|3[01])[/](19|20)[0-9]{2}" />
                             <label for="goal">Goal:</label> 
-                            <input type="text" name="goal" value="" id="goal" />
+                            <input type="text" name="goal" value="" id="goal" required/>
                     <input type="submit" name="submit" value="Submit" />
                 </fieldset>
             </form>

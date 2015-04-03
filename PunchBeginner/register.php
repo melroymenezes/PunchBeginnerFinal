@@ -8,34 +8,47 @@
         $password = $_POST['password'];
         $email = $_POST['email'];
         $interest = $_POST['interest'];
-        $query = "INSERT INTO users (username, password, email, interest) VALUES (?, SHA(?), ?, ?)";
 
-        $statement = $databaseConnection->prepare($query);
-        $statement->bind_param('ssss', $username, $password, $email, $interest);
-        $statement->execute();
-        $statement->store_result();
+        // check if usernamer already exists
+        $check = "SELECT * FROM users WHERE username = ?";
+		$statementcheck = $databaseConnection->prepare($check);
+		$statementcheck->bind_param('s', $username);
+		$statementcheck->execute();
+		$statementcheck->store_result();
 
-        $creationWasSuccessful = $statement->affected_rows == 1 ? true : false;
-        if ($creationWasSuccessful)
-        {
-            $userId = $statement->insert_id;
+		if ($statementcheck->num_rows > 0) {
+		    echo "Username already taken";
+		} else {
 
-            $addToUserRoleQuery = "INSERT INTO users_in_roles (user_id, role_id) VALUES (?, ?)";
-            $addUserToUserRoleStatement = $databaseConnection->prepare($addToUserRoleQuery);
+            $query = "INSERT INTO users (username, password, email, interest) VALUES (?, SHA(?), ?, ?)";
 
-            // TODO: Extract magic number for the 'user' role ID.
-            $userRoleId = 2;
-            $addUserToUserRoleStatement->bind_param('dd', $userId, $userRoleId);
-            $addUserToUserRoleStatement->execute();
-            $addUserToUserRoleStatement->close();
+            $statement = $databaseConnection->prepare($query);
+            $statement->bind_param('ssss', $username, $password, $email, $interest);
+            $statement->execute();
+            $statement->store_result();
 
-            $_SESSION['userid'] = $userId;
-            $_SESSION['username'] = $username;
-            header ("Location: index.php");
-        }
-        else
-        {
-            echo "Failed registration";
+            $creationWasSuccessful = $statement->affected_rows == 1 ? true : false;
+            if ($creationWasSuccessful)
+            {
+                $userId = $statement->insert_id;
+
+                $addToUserRoleQuery = "INSERT INTO users_in_roles (user_id, role_id) VALUES (?, ?)";
+                $addUserToUserRoleStatement = $databaseConnection->prepare($addToUserRoleQuery);
+
+                // TODO: Extract magic number for the 'user' role ID.
+                $userRoleId = 2;
+                $addUserToUserRoleStatement->bind_param('dd', $userId, $userRoleId);
+                $addUserToUserRoleStatement->execute();
+                $addUserToUserRoleStatement->close();
+
+                $_SESSION['userid'] = $userId;
+                $_SESSION['username'] = $username;
+                header ("Location: index.php");
+            }
+            else
+            {
+                echo "Failed registration";
+            }
         }
     }
 ?>
@@ -46,20 +59,20 @@
                 <fieldset>
                     <legend>Register an account</legend>
                             <label for="email">E-mail:</label> 
-                            <input type="text" name="email" value="" id="email" />
+                            <input type="text" name="email" value="" id="email" required/>
                             <label for="interests">Add an interest:</label> 
-                            <select name="interest">
-                              <option value="volunteer">Volunteer abroad</option>
-                              <option value="startups">Start Ups</option>
-                              <option value="education">Education</option>
-                              <option value="construction">Construction</option>
-                              <option value="health">Health</option>
+                            <select name="interest" id="dropdown">
+                              <option value="Volunteer Abroad">Volunteer Abroad</option>
+                              <option value="Startups">Start Ups</option>
+                              <option value="Education">Education</option>
+                              <option value="Construction">Construction</option>
+                              <option value="Health">Health</option>
                             </select>
                             <label for="username">Username:</label> 
-                            <input type="text" name="username" value="" id="username" />
+                            <input type="text" name="username" value="" id="username" required/>
                             <label for="password">Password:</label>
-                            <input type="password" name="password" value="" id="password" />
-                            <input type="submit" name="submit" value="Submit" />
+                            <input type="password" name="password" value="" id="password" required/>
+                            <input type="submit" name="submit" value="Register" />
                 </fieldset>
             </form>
         </div>

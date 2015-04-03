@@ -23,6 +23,8 @@
                         <?php
                         if (logged_on())
                         {
+                            echo '<li><a href="/viewprofile.php">View Profile</a></li>' . "\n";
+                            echo '<li><a href="/editprofile.php">Edit Profile</a></li>' . "\n";
                             echo '<li><a href="/logoff.php">Sign out</a></li>' . "\n";
                         }
                         else

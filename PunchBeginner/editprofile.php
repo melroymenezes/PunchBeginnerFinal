@@ -21,7 +21,7 @@
         $creationWasSuccessful3 = $statement->affected_rows == 1 ? true : false;
         if ($creationWasSuccessful3)
         {            
-            header ("Location: index.php");
+            header ("Location: viewprofile.php");
             
         }
         else
@@ -30,11 +30,11 @@
         }
     } else {
         $uid = $_SESSION['userid'];
-        $sql="SELECT email FROM users WHERE id=?";
+        $sql="SELECT email, interest FROM users WHERE id=?";
         $statement1 = $databaseConnection->prepare($sql);
         $statement1->bind_param('i', $uid);
         $statement1->execute();
-	    $statement1->bind_result($cur_email);  
+	    $statement1->bind_result($cur_email, $cur_interest);  
         $statement1->fetch();
     }
 ?>
@@ -46,14 +46,14 @@
                 <fieldset>
                     <legend>Edit user information</legend>
                             <label for="emails">E-mail:</label> 
-                            <input type="text" name="email" value="<?php print $cur_email; ?>" id="email" />
+                            <input type="text" name="email" value="<?php print $cur_email; ?>" id="email" required/>
                             <label for="interests">Change interest:</label> 
-                            <select name="interest">
-                              <option value="volunteer">Volunteer abroad</option>
-                              <option value="startups">Start Ups</option>
-                              <option value="education">Education</option>
-                              <option value="construction">Construction</option>
-                              <option value="health">Health</option>
+                            <select name="interest" id="dropdown">
+                              <option <?php if($cur_interest == 'Volunteer Abroad'){echo("selected");}?>>Volunteer Abroad</option>
+                              <option <?php if($cur_interest == 'Start Ups'){echo("selected");}?>>Start Ups</option>
+                              <option <?php if($cur_interest == 'Education'){echo("selected");}?>>Education</option>
+                              <option <?php if($cur_interest == 'Construction'){echo("selected");}?>>Construction</option>
+                              <option <?php if($cur_interest == 'Health'){echo("selected");}?>>Health</option>
                             </select> 
                     <input type="submit" name="submit" value="Update" />
                 </fieldset>
