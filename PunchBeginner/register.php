@@ -7,10 +7,11 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $query = "INSERT INTO users (username, password, email) VALUES (?, SHA(?), ?)";
+        $interest = $_POST['interest'];
+        $query = "INSERT INTO users (username, password, email, interest) VALUES (?, SHA(?), ?, ?)";
 
         $statement = $databaseConnection->prepare($query);
-        $statement->bind_param('sss', $username, $password, $email);
+        $statement->bind_param('ssss', $username, $password, $email, $interest);
         $statement->execute();
         $statement->store_result();
 
@@ -46,6 +47,14 @@
                     <legend>Register an account</legend>
                             <label for="email">E-mail:</label> 
                             <input type="text" name="email" value="" id="email" />
+                            <label for="interests">Add an interest:</label> 
+                            <select name="interest">
+                              <option value="volunteer">Volunteer abroad</option>
+                              <option value="startups">Start Ups</option>
+                              <option value="education">Education</option>
+                              <option value="construction">Construction</option>
+                              <option value="health">Health</option>
+                            </select>
                             <label for="username">Username:</label> 
                             <input type="text" name="username" value="" id="username" />
                             <label for="password">Password:</label>
