@@ -32,8 +32,12 @@ function postResults(response){
     var i = 0;
     while (i < data.length) {
         var li = document.createElement('li');
-        li.appendChild(document.createTextNode(data[i].title));
-        
+        var anchor = document.createElement('a');
+
+        anchor.appendChild(document.createTextNode(data[i].title));
+        anchor.setAttribute('href', "viewproject.php?uid=" + data[i].UID);
+
+        li.appendChild(anchor);
         ul.appendChild(li);
         i++;
     }
