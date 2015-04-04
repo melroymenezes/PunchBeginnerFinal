@@ -1,16 +1,17 @@
 
     <div id="main">
+        <script src="donate.js"></script>
         <div id="view">
             <h1>Title: <?php echo $title; ?></h1>
             <p>Details: <?php echo $details; ?></p>
             <ul> 
                 <li>Deadline: <?php echo $deadline; ?></li>
-                <li>Amount Raised: out of <?php echo $goal; ?></li>
+                <li>Amount Raised: <?php echo $cf; ?> out of <?php echo $goal; ?></li>
                 <li>Rating: </li>
             </ul>
             <div id="buttonHolder">
                 <button id="donate" type="button"
-                        onclick="location.href = 'donate.php'">
+                        onclick="donate()">
                     Donate
                 </button>
                 <button id="rate" type="button"

@@ -6,7 +6,7 @@
     $uid = htmlspecialchars($_GET["uid"]);
     echo $uid;
 
-    $query = "SELECT uid, title, details, deadline, goal FROM projects WHERE uid=?";
+    $query = "SELECT uid, title, details, deadline, goal, currentFunds FROM projects WHERE uid=?";
     $statement = $databaseConnection->prepare($query);
     $statement->bind_param('i', $uid);
 
@@ -15,7 +15,7 @@
 
     if ($statement->num_rows == 1)
         {
-            $statement->bind_result($u, $title, $details, $deadline, $goal);
+            $statement->bind_result($u, $title, $details, $deadline, $goal, $cf);
             $statement->fetch();
         }
         else
