@@ -15,7 +15,7 @@
             <div class="search" >
                 <label>Search for a project here:</label>
                 <input type="text" name="indexSearch" id="txtsearch"
-                       placeholder="Search..." required />
+                       placeholder="Search..." />
                 <input type="submit" value="Search" name="search" />            
             </div>
         </form>

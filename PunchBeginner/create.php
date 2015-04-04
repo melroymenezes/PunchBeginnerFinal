@@ -11,7 +11,7 @@
         $deadline = $_POST['deadline'];
         $goal = $_POST['goal'];
 
-        $query = "INSERT INTO projects (uid, title, details, deadline, goal) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO projects (initiator, title, details, deadline, goal) VALUES (?, ?, ?, ?, ?)";
 
         $statement = $databaseConnection->prepare($query);
         $statement->bind_param('isssd', $uid, $title, $details, $deadline, $goal);
@@ -37,7 +37,7 @@
         }
         else
         {
-            echo "Project Creation Failed";
+            echo "Project Creation Failed" . $statement->error;
         }
     }
 ?>
