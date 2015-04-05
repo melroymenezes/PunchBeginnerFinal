@@ -39,9 +39,9 @@
         $creationWasSuccessful2 = $statement->affected_rows == 1 ? true : false;
         if ($creationWasSuccessful2)
         {
-            /*
+            
             $pid = $statement->insert_id;
-
+            /*
             $addProjToUser = "INSERT INTO user_project (uid, pid) VALUES (?, ?)";
             $addProjToUserStatement = $databaseConnection->prepare($addProjToUser);
 
@@ -50,7 +50,7 @@
             $addProjToUserStatement->close();
             */
             
-            header ("Location: /index.php");
+            header ("Location: /viewproject.php?pid=$pid");
             
         }
         else

@@ -1,6 +1,6 @@
 function update() {
     var query = document.forms["searchform"]["search"].value;
-    console.log(document.forms["searchform"]["searchBy"].value)
+    //console.log(document.forms["searchform"]["searchBy"].value)
 
     if (window.XMLHttpRequest) {    // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
