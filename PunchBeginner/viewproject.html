@@ -9,6 +9,7 @@
                 <li>Deadline: <?php echo $deadline; ?></li>
                 <li>Amount Raised: <?php echo $cf; ?> out of <?php echo $goal; ?></li>
                 <li>Rating: <?php echo $likes; ?> of <?php echo $total; ?> liked this</li>
+                <li>Community: <?php echo $interest; ?></li>
             </ul>
             <div id="buttonHolder">
                 <button id="donate" type="button"
@@ -22,12 +23,11 @@
                 <button id="dislike" type="button" onclick="dislike()">
                 Dislike</button>
             </div>
-             <div id="doThisInstead">
-                <p>
-                    <a href="index.php">Cancel</a>
-                </p>
-             </div>
         </div>
-
+        <div id="doThisInstead">
+            <p>
+                <a href="index.php">Cancel</a>
+            </p>
+        </div>
     </div>
 </div> <!-- End of outer-wrapper which opens in header.php -->

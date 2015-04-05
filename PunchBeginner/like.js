@@ -23,10 +23,11 @@ function sendLike(status){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
             //console.log(xmlhttp.responseText);
-
             if (xmlhttp.responseText == "success") {
                 window.location.reload(true);
             } else if (xmlhttp.responseText == "Already liked") {
+                alert(xmlhttp.responseText);
+             } else if (xmlhttp.responseText == "Can't rate your own project") {
                 alert(xmlhttp.responseText);
             } else {
                 console.log(xmlhttp.responseText);

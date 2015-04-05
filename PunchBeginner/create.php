@@ -6,15 +6,33 @@
     if (isset($_POST['submit'])){
 
         $uid = $_SESSION['userid']; 
+
+        $query1 = "SELECT interest FROM users WHERE id=?";
+        $statement1 = $databaseConnection->prepare($query1);
+        $statement1->bind_param('i', $uid);
+
+        $statement1->execute();
+        $statement1->store_result();
+
+        if ($statement1->num_rows == 1)
+            {
+                $statement1->bind_result($interest);
+                $statement1->fetch();
+            }
+            else
+            {
+                echo $statement->error;
+        }
+
         $title = $_POST['title'];
         $details = $_POST['details'];
         $deadline = $_POST['deadline'];
         $goal = $_POST['goal'];
 
-        $query = "INSERT INTO projects (initiator, title, details, deadline, goal) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO projects (initiator, title, details, deadline, goal, interest) VALUES (?, ?, ?, ?, ?, ?)";
 
         $statement = $databaseConnection->prepare($query);
-        $statement->bind_param('isssd', $uid, $title, $details, $deadline, $goal);
+        $statement->bind_param('isssds', $uid, $title, $details, $deadline, $goal, $interest);
         $statement->execute();
         $statement->store_result();
 
