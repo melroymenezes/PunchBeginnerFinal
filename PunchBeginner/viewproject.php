@@ -4,9 +4,9 @@
     include("Includes/header.php"); 
     
     $pid = htmlspecialchars($_GET["pid"]);
-    echo $pid;
+    //echo $pid;
 
-    $query = "SELECT pid, initiator, title, details, deadline, goal, currentFunds FROM projects WHERE pid=?";
+    $query = "SELECT pid, initiator, title, details, deadline, goal, currentFunds, likes, total FROM projects WHERE pid=?";
     $statement = $databaseConnection->prepare($query);
     $statement->bind_param('i', $pid);
 
@@ -15,7 +15,7 @@
 
     if ($statement->num_rows == 1)
         {
-            $statement->bind_result($pid, $init, $title, $details, $deadline, $goal, $cf);
+            $statement->bind_result($pid, $init, $title, $details, $deadline, $goal, $cf, $likes, $total);
             $statement->fetch();
         }
         else

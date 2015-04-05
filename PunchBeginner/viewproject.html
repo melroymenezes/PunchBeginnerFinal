@@ -1,23 +1,26 @@
 
     <div id="main">
         <script src="donate.js"></script>
+        <script src="like.js"></script>
         <div id="view">
             <h1>Title: <?php echo $title; ?></h1>
             <p>Details: <?php echo $details; ?></p>
             <ul> 
                 <li>Deadline: <?php echo $deadline; ?></li>
                 <li>Amount Raised: <?php echo $cf; ?> out of <?php echo $goal; ?></li>
-                <li>Rating: </li>
+                <li>Rating: <?php echo $likes; ?> of <?php echo $total; ?> liked this</li>
             </ul>
             <div id="buttonHolder">
                 <button id="donate" type="button"
                         onclick="donate()">
                     Donate
                 </button>
-                <button id="rate" type="button"
-                        onclick="location.href = 'rate.php'">
-                    Rate
+                <button id="like" type="button"
+                        onclick="like()">
+                    Like
                 </button>
+                <button id="dislike" type="button" onclick="dislike()">
+                Dislike</button>
             </div>
              <div id="doThisInstead">
                 <p>
