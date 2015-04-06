@@ -47,11 +47,15 @@
                     <nav>
                         <ul id="menu">
                             <li><a href="/index.php">Home</a></li>
-                            <li><a href="/create.php">Create</a></li>
+                            <!--<li><a href="/create.php">Create</a></li>-->
+
                             <?php
-                                if (logged_on() and is_admin()) {
-                                    echo "<li><a href=\"/admin.php\">Admin</a></li>";
+                                if (logged_on() and !is_admin()) {
+                                    echo "<li><a href=\"/create.php\">Create</a></li>";
                                 }
+                                if (is_admin()) {
+                                    echo "<li><a href=\"/admin.php\">Admin</a></li>";
+                                }    
                             ?>
                             <?php
                                 $statement = $databaseConnection->prepare("SELECT id, menulabel FROM pages");
