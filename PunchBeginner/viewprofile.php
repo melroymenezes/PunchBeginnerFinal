@@ -14,25 +14,13 @@
 
     <div id="main">
         <div id="view">
-            <h1><?php echo $username ?></h1>
-            <p>Email: <?php echo $email ?></p>
-            <p>Current Interest: <?php echo $interest ?></p>
-            <ul>
-                <li>My projects: </li>
-                <?php
-                    $uid = $_SESSION['userid'];
-                    $query1 = "SELECT pid, title FROM users, projects WHERE id=initiator AND id=?";
-                    $statement1 = $databaseConnection->prepare($query1);
-                    $statement1->bind_param('d', $uid);
-                    $statement1->execute();
-	                $statement1->bind_result($pid, $title);
-                    while ($statement1->fetch()) {
-                        echo "<li>$title</li>";
-                        //echo "<li><a href='viewproject.php?pid={$pid}'>$title</a></li>";
-                    }        
-                ?>
-            </ul>
-                
+            <h1><?php echo $username; ?></h1>
+            <p>Email: <?php echo $email; ?></p>
+            <p>Current Interest: <?php echo $interest; ?></p>
+            <div id="extras">
+                <script src="viewprofile2.js"></script>
+                <button onclick="display()">Show Projects and Friends</button>
+            </div>
         </div>
 
     </div>
